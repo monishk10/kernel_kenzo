@@ -1,0 +1,18 @@
+mount("ext4", "EMMC", "/dev/block/bootdevice/by-name/system", "/system");
+
+package_extract_file("liverepack.sh", "/tmp/liverepack.sh"); 
+package_extract_file("utils/busybox", "/tmp/busybox"); 
+package_extract_file("utils/mkbootimg", "/tmp/mkbootimg");
+package_extract_file("utils/unpackbootimg", "/tmp/unpackbootimg");
+package_extract_dir("files", "/tmp/xtracted");
+set_perm(0, 0, 0755, "/tmp/busybox");
+set_perm(0, 0, 0755, "/tmp/mkbootimg");
+set_perm(0, 0, 0755, "/tmp/unpackbootimg");
+set_perm(0, 0, 0755, "/tmp/liverepack.sh");
+
+assert(run_program("/tmp/liverepack.sh") == 0);
+
+run_program("/sbin/mv", "/system/lib/modules", "/system/lib/modules.old");
+package_extract_dir("modules", "/system/lib/modules");
+set_perm_recursive(0, 0, 0755, 0644, "/system/lib/modules");
+set_perm(0, 0, 0755, "/system/lib/modules");

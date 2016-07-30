@@ -23,9 +23,9 @@ KERNEL_PATH=$KERNEL_DIR/$KERNEL
 ZIP_DIR=$LOCAL_PATH/zip/raw
 
 # Tuneables
-CROSS_COMPILE_LOCATION=home/boo/android/system/cm-13.0/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
-CROSS_COMPILE=$CROSS_COMPILE_LOCATION/bin/aarch64-linux-android
-DTBTOOL=$KERNEL_DIR/scripts/dtbTool
+CROSS_COMPILE_LOCATION=/home/boo/android/system/cm-13.0/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+CROSS_COMPILE=$CROSS_COMPILE_LOCATION/bin/aarch64-linux-android-
+DTBTOOL=$LOCAL_PATH/scripts/dtbTool
 BUILD_HOST=fireball
 BUILD_USER=boo
 
