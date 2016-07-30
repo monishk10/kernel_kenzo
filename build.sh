@@ -84,7 +84,8 @@ clean() {
 	rm -rf $LOCAL_PATH/zip/archives/*
 	cd $ZIP_DIR
 	rm -rf *~*
-	rm -rf zImage
+	rm -rf files/*
+	rm -rf modules/*
 	cd $KERNEL_DIR
 	rm -rf *Image*
 	cd $LOCAL_PATH
