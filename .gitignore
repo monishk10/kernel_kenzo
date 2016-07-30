@@ -74,6 +74,7 @@ series
 *.img
 *.zip
 scripts/dtbTool
+Image.gz-dtb
 
 # cscope files
 cscope.*
