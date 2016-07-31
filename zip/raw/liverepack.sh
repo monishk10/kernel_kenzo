@@ -115,7 +115,7 @@ setup_workspace
 get_and_unpack_bootimg
 repack_bootimg
 #call_preflash
-#flash_kernel
+flash_kernel
 #call_postflash
 cleanup
 
