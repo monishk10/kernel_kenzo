@@ -95,11 +95,12 @@ clean() {
 build_kernel() {
 	make $DEFCONFIG
 	make Image.gz-dtb
+	make modules
 	make dtbs
 }
 
 build_dt_img() {
-		$DTBTOOL -o $LOCAL_PATH/arch/$ARCH/boot/dt.img -s $KERNEL_PAGESIZE -p $LOCAL_PATH/scripts/dtc/ $LOCAL_PATH/arch/arm/boot/dts/
+		$DTBTOOL -o $LOCAL_PATH/arch/$ARCH/boot/dt.img -s $KERNEL_PAGESIZE -p $LOCAL_PATH/scripts/dtc/ $LOCAL_PATH/arch/arm/boot/dts/ 2<&1 >> /dev/null
 }
 
 collect_files() {
@@ -110,13 +111,14 @@ collect_files() {
   		-not \( -path ./include -prune \) \
  		-not \( -path ./Kbuild -prune \) \
   		-name \*.ko \
-		-exec cp '{}' "$ZIP_DIR/modules/" ';'
+		-exec cp '{}' "$ZIP_DIR/modules" ';'
 }
 
 strip() {
 	find "$ZIP_DIR/modules" -type f -exec \
 		 "${CROSS_COMPILE-}objcopy" --strip-unneeded '{}' ';'
 }
+
 
 make_zip() {
 	# TODO: Better do python and use the technique used by Android build system.
