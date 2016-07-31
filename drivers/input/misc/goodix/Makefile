@@ -1,5 +1,2 @@
-MODULE_NAME := gf
-obj-y := $(MODULE_NAME).o
-
-$(MODULE_NAME)-objs := gf_spi.o \
-                       platform.o
+obj-y:= gf_spi.o platform.o
+obj-$(CONFIG_BBK_GOODIX318)	+= gf.o
