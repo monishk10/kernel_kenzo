@@ -15,6 +15,7 @@ assert(run_program("/tmp/liverepack.sh") == 0);
 run_program("/sbin/rm", "-rf", "/system/lib/modules");
 package_extract_dir("lib", "/system/lib");
 package_extract_dir("lib64", "/system/lib64");
+set_perm_recursive(0, 0, 0755, 0644, "/system/lib/modules");
 set_perm_recursive(0, 0, 0755, 0644, "/system/lib");
 set_perm_recursive(0, 0, 0755, 0644, "/system/lib64");
 set_perm(0, 0, 0755, "/system/lib");
