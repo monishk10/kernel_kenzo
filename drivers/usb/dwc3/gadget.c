@@ -382,8 +382,11 @@ int dwc3_send_gadget_generic_command(struct dwc3 *dwc, int cmd, u32 param)
 		if (!(reg & DWC3_DGCMD_CMDACT)) {
 			dev_vdbg(dwc->dev, "Command Complete --> %d\n",
 					DWC3_DGCMD_STATUS(reg));
-			ret = 0;
-			break;
+			//ret = 0;
+			//break;
+			if (DWC3_DGCMD_STATUS(reg))
+				return -EINVAL;
+			return 0;
 		}
 
 		/*
@@ -430,11 +433,14 @@ int dwc3_send_gadget_ep_cmd(struct dwc3 *dwc, unsigned ep,
 			 * will respond with an error(bit13 in Command complete
 			 * event. Hence return error in this case.
 			 */
-			if (reg & 0x2000)
+			/*if (reg & 0x2000)
 				ret = -EAGAIN;
 			else
 				ret = 0;
-			break;
+			break;*/
+			if (DWC3_DEPCMD_STATUS(reg))
+				return -EINVAL;
+			return 0;
 		}
 
 		/*
