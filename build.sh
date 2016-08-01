@@ -111,11 +111,11 @@ collect_files() {
   		-not \( -path ./include -prune \) \
  		-not \( -path ./Kbuild -prune \) \
   		-name \*.ko \
-		-exec cp '{}' "$ZIP_DIR/modules" ';'
+		-exec cp '{}' "$ZIP_DIR/lib/modules" ';'
 }
 
 strip() {
-	find "$ZIP_DIR/modules" -type f -exec \
+	find "$ZIP_DIR/lib/modules" -type f -exec \
 		 "${CROSS_COMPILE-}objcopy" --strip-unneeded '{}' ';'
 }
 
