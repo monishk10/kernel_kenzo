@@ -30,10 +30,10 @@ TAG_OFFSET=0x01e00000
 # globals
 XTRCT_DIR='/tmp/xtracted'
 WORK_DIR='/tmp/liverepack'
+SD_PATH="/data/media/0"
 
 # log trap
 copylog_on_pre_exit() {
-SD_PATH="/data/media/0"
 ui_print "Copying log to $SD_PATH/liverepack.log"
 rm "$SD_PATH/liverepack.log"
 cp "/tmp/liverepack.log" "$SD_PATH/liverepack.log"
@@ -67,6 +67,33 @@ ui_print() {
     fi
 }
 
+# Backup - We will backup anything we intend to change.
+# Path where we will store backup
+BACKUP_PATH=$SD_PATH/kernel_backup
+						 
+setup_backup_environment() {
+	/tmp/busybox rm -rf $BACKUP_PATH
+	/tmp/busybox mkdir -p $BACKUP_PATH
+	/tmp/busybox mkdir -p $BACKUP_PATH/system/lib
+	/tmp/busybox mkdir -p $BACKUP_PATH/system/lib64
+}
+
+backup_system_files() {
+	/tmp/busybox cp -R /system/lib/modules/ $BACKUP_PATH/system/lib/modules/
+	/tmp/busybox cp /system/lib/fpc_fingerprint_hal.so $BACKUP_PATH/system/lib/fpc_fingerprint_hal.so
+	/tmp/busybox cp /system/lib64/fpc_fingerprint_hal.so $BACKUP_PATH/system/lib64/fpc_fingerprint_hal.so
+}
+
+# We will call this method when we dump boot.img
+backup_boot_img() {
+	/tmp/busybox cp $1 $BACKUP_PATH
+}
+
+backup() {
+	setup_backup_environment
+	backup_system_files
+}
+
 setup_workspace() {
 /tmp/busybox rm -rf "$WORK_DIR"
 /tmp/busybox mkdir "$WORK_DIR"
@@ -81,7 +108,7 @@ fi
 dump_bootimg() {
 	ui_print "INFO: Dumping boot.img"
 	/tmp/busybox dd if=/dev/block/bootdevice/by-name/boot of=/tmp/boot.img
-	
+	backup_boot_img /tmp/boot.img	
 }
 
 unpack_bootimg() {
@@ -96,7 +123,7 @@ get_and_unpack_bootimg() {
 }
 
 repack_bootimg() {
-/tmp/mkbootimg --kernel $WORK_DIR/Image.gz-dtb --ramdisk /tmp/boot.img-ramdisk.gz --cmdline $CMDLINE  --base $BASE --pagesize $PAGESIZE --ramdisk_offset $RD_OFFSET --tags_offset $TAG_OFFSET --dt $WORK_DIR/dt.img -o $WORK_DIR/bootnew.img
+/tmp/mkbootimg --kernel $WORK_DIR/Image.gz-dtb --ramdisk /tmp/boot.img-ramdisk.gz --cmdline "$CMDLINE"  --base $BASE --pagesize $PAGESIZE --ramdisk_offset $RD_OFFSET --tags_offset $TAG_OFFSET --dt $WORK_DIR/dt.img -o $WORK_DIR/bootnew.img
 if [ ! -e "$WORK_DIR/bootnew.img" ]; then
 ui_print "FATAL: couldnt pack boot.img" 
 exit 5
@@ -116,7 +143,7 @@ flash_kernel() {
 /tmp/busybox true
 # raw write for now
 /tmp/busybox dd if="$WORK_DIR/bootnew.img" of="$BLK_KERNEL"
-ui_print "raw_write: ret=$?"
+echo "raw_write: ret=$?"
 }
 
 
@@ -130,6 +157,7 @@ cleanup() {
 
  
 setup_workspace
+backup
 get_and_unpack_bootimg
 repack_bootimg
 #call_preflash
