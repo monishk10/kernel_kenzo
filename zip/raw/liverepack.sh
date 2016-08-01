@@ -8,6 +8,13 @@ exec >> "/tmp/liverepack.log" 2<&1
 # configs, but this no general
 BLK_KERNEL='/dev/block/bootdevice/by-name/boot'
 
+# Kernel Params
+CMDLINE="console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk"
+BASE=0x80000000
+PAGESIZE=2048
+RD_OFFSET=0x02000000
+TAG_OFFSET=0x01e00000
+
 # globals
 XTRCT_DIR='/tmp/xtracted'
 WORK_DIR='/tmp/liverepack'
@@ -15,7 +22,7 @@ WORK_DIR='/tmp/liverepack'
 # log trap
 copylog_on_pre_exit() {
 SD_PATH="/data/media/0"
-ui_print "copying log to $SD_PATH/liverepack.log"
+ui_print "Copying log to $SD_PATH/liverepack.log"
 rm "$SD_PATH/liverepack.log"
 cp "/tmp/liverepack.log" "$SD_PATH/liverepack.log"
 }
@@ -77,8 +84,7 @@ get_and_unpack_bootimg() {
 }
 
 repack_bootimg() {
-# hard coded
-/tmp/mkbootimg --kernel $WORK_DIR/Image.gz-dtb --ramdisk /tmp/boot.img-ramdisk.gz --cmdline "console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk"  --base 0x80000000 --pagesize 2048 --ramdisk_offset 0x02000000 --tags_offset 0x01e00000 --dt $WORK_DIR/dt.img -o $WORK_DIR/bootnew.img
+/tmp/mkbootimg --kernel $WORK_DIR/Image.gz-dtb --ramdisk /tmp/boot.img-ramdisk.gz --cmdline $CMDLINE  --base $BASE --pagesize $PAGESIZE --ramdisk_offset $RD_OFFSET --tags_offset $TAG_OFFSET --dt $WORK_DIR/dt.img -o $WORK_DIR/bootnew.img
 if [ ! -e "$WORK_DIR/bootnew.img" ]; then
 ui_print "FATAL: couldnt pack boot.img" 
 exit 5
@@ -98,7 +104,7 @@ flash_kernel() {
 /tmp/busybox true
 # raw write for now
 /tmp/busybox dd if="$WORK_DIR/bootnew.img" of="$BLK_KERNEL"
-echo "raw_write: ret=$?"
+ui_print "raw_write: ret=$?"
 }
 
 
