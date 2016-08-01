@@ -89,6 +89,7 @@ clean() {
 	cd $KERNEL_DIR
 	rm -rf *Image*
 	cd $LOCAL_PATH
+	rm -rf .version
 	
 }
 
