@@ -199,13 +199,27 @@
 			qcom,chg-inhibit-fg;
 			qcom,rparasitic-uohm = <100000>;
 			qcom,bms-psy-name = "bms";
+<<<<<<< HEAD
 			qcom,thermal-mitigation = <2000 1500 700 600 0>;
+=======
+<<<<<<< HEAD
+			qcom,thermal-mitigation = <1500 700 600 0>;
+			qcom,parallel-usb-min-current-ma = <1400>;
+			qcom,parallel-usb-9v-min-current-ma = <900>;
+			qcom,parallel-allowed-lowering-ma = <500>;
+=======
+			qcom,thermal-mitigation = <2000 1800 700 600 0>;
+>>>>>>> 54b2003... Adjust frequencies and charge throttling
 			qcom,fastchg-current-comp = <900>;
 			qcom,float-voltage-comp = <11>;
 			/*11 for 4.2V, 16 for 4.1V*/
 
 			qcom,force-aicl-rerun;
 			qcom,aicl-rerun-period-s = <180>;
+<<<<<<< HEAD
+=======
+>>>>>>> 84a8f10... Adjust frequencies and charge throttling
+>>>>>>> 54b2003... Adjust frequencies and charge throttling
 			qcom,autoadjust-vfloat;
 			qcom,pmic-revid = <&pmi8950_revid>;
 			qcom,charge-unknown-battery;
