@@ -48,10 +48,14 @@
 		qcom,chipid = <0x05010000>;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		qcom,initial-pwrlevel = <4>;
 =======
 		qcom,initial-pwrlevel = <6>;
 >>>>>>> 54b2003... Adjust frequencies and charge throttling
+=======
+		qcom,initial-pwrlevel = <7>;
+>>>>>>> 2331351... Improved gpu frequencies and bus
 
 		qcom,idle-timeout = <80>; //msecs
 		qcom,strtstp-sleepwake;
@@ -149,38 +153,59 @@
 				reg = <2>;
 				qcom,gpu-freq = <432000000>;
 				qcom,bus-freq = <7>;
-				qcom,bus-min = <5>;
+				qcom,bus-min = <6>;
 				qcom,bus-max = <9>;
 			};
 
+<<<<<<< HEAD
 			/* SVS */
 			qcom,gpu-pwrlevel@3 {
 				reg = <3>;
-				qcom,gpu-freq = <300000000>;
-				qcom,bus-freq = <5>;
-				qcom,bus-min = <4>;
+=======
+			/* SVS+ */
+			qcom,gpu-pwrlevel@4 {
+				reg = <4>;
+				qcom,gpu-freq = <366670000>;
+				qcom,bus-freq = <6>;
+				qcom,bus-min = <5>;
 				qcom,bus-max = <7>;
 			};
 
+			/* SVS */
+			qcom,gpu-pwrlevel@5 {
+				reg = <5>;
+>>>>>>> 2331351... Improved gpu frequencies and bus
+				qcom,gpu-freq = <300000000>;
+				qcom,bus-freq = <5>;
+				qcom,bus-min = <4>;
+				qcom,bus-max = <6>;
+			};
+
 			/* Low SVS+ */
+<<<<<<< HEAD
 			qcom,gpu-pwrlevel@4 {
 				reg = <4>;
+=======
+			qcom,gpu-pwrlevel@6 {
+				reg = <6>;
+>>>>>>> 2331351... Improved gpu frequencies and bus
 				qcom,gpu-freq = <266666667>;
 				qcom,bus-freq = <4>;
 				qcom,bus-min = <4>;
 				qcom,bus-max = <5>;
 			};
 
-			qcom,gpu-pwrlevel@6 {
-				reg = <6>;
+			/* Low SVS */
+			qcom,gpu-pwrlevel@7 {
+				reg = <7>;
 				qcom,gpu-freq = <200000000>;
 				qcom,bus-freq = <4>;
 				qcom,bus-min = <3>;
-				qcom,bus-max = <4>;
+				qcom,bus-max = <5>;
 			};
 
-			qcom,gpu-pwrlevel@7 {
-				reg = <7>;
+			qcom,gpu-pwrlevel@8 {
+				reg = <8>;
 				qcom,gpu-freq = <19200000>;
 				qcom,bus-freq = <0>;
 				qcom,bus-min = <0>;
