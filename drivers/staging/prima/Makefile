@@ -3,6 +3,7 @@ default: all
 KBUILD_OPTIONS := WLAN_ROOT=$(PWD)
 KBUILD_OPTIONS += MODNAME=wlan
 
+<<<<<<< HEAD
 WLAN_ROOT := drivers/staging/prima
 
 # Feature flags which are not (currently) configurable via Kconfig
@@ -629,6 +630,8 @@ obj-$(CONFIG_PRIMA_WLAN) += $(MODNAME).o
 obj-$(CONFIG_PRONTO_WLAN) += $(MODNAME).o
 $(MODNAME)-y := $(OBJS)
 
+=======
+>>>>>>> 6f574a8... prima: Update QC prima wireless driver to v3.0.11.66
 all::
 	$(MAKE) -C $(KERNEL_SOURCE) $(KBUILD_OPTIONS) $(EXTRA_CFLAGS) ARCH=$(ARCH) \
 		SUBDIRS=$(CURDIR) CC=${CC} modules
@@ -639,3 +642,5 @@ modules_install:
 clean::
 	rm -f *.o *.ko *.mod.c *.mod.o *~ .*.cmd Module.symvers
 	rm -rf .tmp_versions
+
+
