@@ -8222,7 +8222,9 @@ void hdd_deinit_adapter( hdd_context_t *pHddCtx, hdd_adapter_t *pAdapter, tANI_U
          hdd_cleanup_actionframe(pHddCtx, pAdapter);
 
          hdd_unregister_hostapd(pAdapter, rtnl_held);
-         hdd_set_conparam( 0 );
+         /* set con_mode to STA only when no SAP concurrency mode */
+         if (!(hdd_get_concurrency_mode() & (VOS_SAP | VOS_P2P_GO)))
+             hdd_set_conparam(0);
          break;
       }
 
@@ -11518,6 +11520,7 @@ int hdd_wlan_startup(struct device *dev )
    ((VosContextType*)(pVosContext))->pHDDContext = (v_VOID_t*)pHddCtx;
 
    pHddCtx->parent_dev = dev;
+   pHddCtx->con_scan_abort_cnt = 0;
 
    init_completion(&pHddCtx->full_pwr_comp_var);
    init_completion(&pHddCtx->standby_comp_var);
