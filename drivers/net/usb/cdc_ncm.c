@@ -613,6 +613,7 @@ static int cdc_ncm_bind(struct usbnet *dev, struct usb_interface *intf)
 		return -ENODEV;
 
 	/* NCM data altsetting is always 1 */
+<<<<<<< HEAD
 	ret = cdc_ncm_bind_common(dev, intf, 1);
 
 	/*
@@ -623,6 +624,9 @@ static int cdc_ncm_bind(struct usbnet *dev, struct usb_interface *intf)
 	 */
 	usbnet_link_change(dev, 0, 0);
 	return ret;
+=======
+	return cdc_ncm_bind_common(dev, intf, CDC_NCM_DATA_ALTSETTING_NCM);
+>>>>>>> 5e74dfc... Merge caf/LA.BR.1.3.6_rb1.8 into LA.BR.1.3.6_rb1.6
 }
 
 static void cdc_ncm_align_tail(struct sk_buff *skb, size_t modulus, size_t remainder, size_t max)
