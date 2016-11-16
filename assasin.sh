@@ -53,40 +53,42 @@ export LD_LIBRARY_PATH=$COMPILER/lib/
 export KBUILD_BUILD_USER="monish"
 export KBUILD_BUILD_HOST="beast"
 
-###########################################################################
-# Directory naming
-echo -e "${bldblu}"
-while read -p "Which branch (cm/miui)? " mchoice
-echo -e "${bldred}"
-do
-case "$mchoice" in
-	cm|CM )
-		ASSASIN_F="cm"
-		echo
-		echo "Named cm"
-		break
-		;;
-	m|M )
-		ASSASIN_F="miui"
-		echo
-		echo "Named miui"
-		break
-		;;
-	* )
-		echo
-		echo "Invalid try again!"
-		echo
-		;;
-esac
-done
 
 ###########################################################################
+# Directory naming
+#echo -e "${bldblu}"
+#while read -p "Which branch (cm/miui)? " mchoice
+#echo -e "${bldred}"
+#do
+#case "$mchoice" in
+#	cm|CM )
+#		ASSASIN_F="cm"
+#		echo
+#		echo "Named cm"
+#		break
+#		;;
+#	m|M )
+#		ASSASIN_F="miui"
+#		echo
+#		echo "Named miui"
+#		break
+#		;;
+#	* )
+#		echo
+#		echo "Invalid try again!"
+#		echo
+#		;;
+#esac
+#done
+#
+###########################################################################
+
 # Paths
 #STRIP=/toolchain-path/arm-eabi-strip
 STRIP=$COMPILER/bin/aarch64-linux-android-strip
 KERNEL_DIR=`pwd`
-REPACK_DIR="$KERNEL_DIR/zip/$ASSASIN_F/kernel_zip/tools"
-REPACK_DIR_1="$KERNEL_DIR/zip/$ASSASIN_F/kernel_zip"
+REPACK_DIR="$KERNEL_DIR/zip/kernel_zip/tools"
+REPACK_DIR_1="$KERNEL_DIR/zip/kernel_zip"
 DTBTOOL_DIR="$KERNEL_DIR/zip"
 IMAGE_DIR="$KERNEL_DIR/arch/arm64/boot"
 
@@ -102,7 +104,6 @@ function make_dtb {
 function clean_all {
 		make clean && make mrproper
 		cd arch/arm/boot/dts/
-		rm .msm8956*
 		rm *.dtb
 }
 
@@ -116,7 +117,7 @@ function make_kernel {
 
 function make_zip {
 		cd $REPACK_DIR_1
-		zip -r9 ~/kernel/builds/ASSASIN_kenzo-$ASSASIN_F-$(date +%d-%m_%H%M).zip *
+		zip -r9 ~/kernel/builds/ASSASIN_kenzo-$(date +%d-%m_%H%M).zip *
 }
 
 function copy_modules {
@@ -133,9 +134,9 @@ DATE_START=$(date +"%s")
 echo -e "${bldred}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}";
 
 echo -e "${bldgrn}"
-echo "-----------------"
-echo "Making ASSASIN Kernel:"
-echo "-----------------"
+echo "----------------------"
+echo "Making ASSASSINX Kernel:"
+echo "----------------------"
 echo -e "${restore}"
 
 echo -e "${bldgrn}"
@@ -190,11 +191,11 @@ case "$dchoice" in
 esac
 done
 echo -e "${bldgrn}"
-echo "ASSASIN_kenzo-$ASSASIN_F-$(date +%d-%m_%H%M).zip"
+echo "ASSASSINX_kenzo-$(date +%d-%m_%H%M).zip"
 echo -e "${bldred}"
 echo "################################################################################"
 echo -e "${bldgrn}"
-echo "------------------------Assasin Kernel Compiled in:-----------------------------"
+echo "------------------------AssassinX Kernel Compiled in:-----------------------------"
 echo -e "${bldred}"
 echo "################################################################################"
 echo -e "${restore}"
