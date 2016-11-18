@@ -2428,10 +2428,20 @@ out_put:
 	if (err == 0)
 		return datagrams;
 
+<<<<<<< HEAD
 	if (datagrams != 0) {
+=======
+	/*
+	 * We may return less entries than requested (vlen) if the
+	 * sock is non block and there aren't enough datagrams...
+	 */
+	if (err != -EAGAIN) {
+>>>>>>> 67f239d... 3.10.93->3.10.104
 		/*
-		 * We may return less entries than requested (vlen) if the
-		 * sock is non block and there aren't enough datagrams...
+		 * ... or  if recvmsg returns an error after we
+		 * received some datagrams, where we record the
+		 * error to return on the next call or if the
+		 * app asks about it using getsockopt(SO_ERROR).
 		 */
 		if (err != -EAGAIN) {
 			/*

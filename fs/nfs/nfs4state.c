@@ -1452,6 +1452,11 @@ restart:
 				}
 				spin_unlock(&state->state_lock);
 				nfs4_put_open_state(state);
+<<<<<<< HEAD
+=======
+				clear_bit(NFS_STATE_RECLAIM_NOGRACE,
+					&state->flags);
+>>>>>>> 67f239d... 3.10.93->3.10.104
 				spin_lock(&sp->so_lock);
 				goto restart;
 			}
