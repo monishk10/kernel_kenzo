@@ -117,7 +117,7 @@ function make_kernel {
 
 function make_zip {
 		cd $REPACK_DIR_1
-		zip -r9 ~/kernel/builds/ASSASIN_kenzo-$(date +%d-%m_%H%M).zip *
+		zip -r9 ~/kernel/builds/AssassinX_kenzo_Ng-$(date +%d-%m_%H%M).zip *
 }
 
 function copy_modules {
@@ -135,7 +135,7 @@ echo -e "${bldred}"; echo -e "${blink_red}"; echo "$AK_VER"; echo -e "${restore}
 
 echo -e "${bldgrn}"
 echo "----------------------"
-echo "Making ASSASSINX Kernel:"
+echo "Making AssassinX Kernel:"
 echo "----------------------"
 echo -e "${restore}"
 
@@ -191,7 +191,7 @@ case "$dchoice" in
 esac
 done
 echo -e "${bldgrn}"
-echo "ASSASSINX_kenzo-$(date +%d-%m_%H%M).zip"
+echo "AssassinX_kenzo-$(date +%d-%m_%H%M).zip"
 echo -e "${bldred}"
 echo "################################################################################"
 echo -e "${bldgrn}"
