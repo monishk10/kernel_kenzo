@@ -112,7 +112,7 @@ function make_kernel {
 		echo
 		make $DEFCONFIG
 		make $THREAD
-		cp -vr $IMAGE_DIR/$KERNEL $REPACK_DIR/Image
+		cp -vr $IMAGE_DIR/$KERNEL $REPACK_DIR/assassinImage
 }
 
 function make_zip {
