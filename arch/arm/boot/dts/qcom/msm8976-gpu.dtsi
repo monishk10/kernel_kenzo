@@ -50,6 +50,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		qcom,initial-pwrlevel = <4>;
 =======
 		qcom,initial-pwrlevel = <6>;
@@ -60,6 +61,9 @@
 =======
 		qcom,initial-pwrlevel = <6>;
 >>>>>>> 16fd5a2... Revert "Improved gpu frequencies and bus"
+=======
+		qcom,initial-pwrlevel = <5>;
+>>>>>>> 1a10dd0... Revert "Adjust frequencies and charge throttling"
 
 		qcom,idle-timeout = <80>; //msecs
 		qcom,strtstp-sleepwake;
@@ -220,6 +224,14 @@
 
 			qcom,gpu-pwrlevel@7 {
 				reg = <7>;
+				qcom,gpu-freq = <133333333>;
+				qcom,bus-freq = <3>;
+				qcom,bus-min = <2>;
+				qcom,bus-max = <4>;
+			};
+
+			qcom,gpu-pwrlevel@8 {
+				reg = <8>;
 				qcom,gpu-freq = <19200000>;
 				qcom,bus-freq = <0>;
 				qcom,bus-min = <0>;

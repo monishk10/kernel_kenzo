@@ -200,13 +200,17 @@
 			qcom,rparasitic-uohm = <100000>;
 			qcom,bms-psy-name = "bms";
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qcom,thermal-mitigation = <2000 1500 700 600 0>;
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> 1a10dd0... Revert "Adjust frequencies and charge throttling"
 			qcom,thermal-mitigation = <1500 700 600 0>;
 			qcom,parallel-usb-min-current-ma = <1400>;
 			qcom,parallel-usb-9v-min-current-ma = <900>;
 			qcom,parallel-allowed-lowering-ma = <500>;
+<<<<<<< HEAD
 =======
 			qcom,thermal-mitigation = <2000 1800 700 600 0>;
 >>>>>>> 54b2003... Adjust frequencies and charge throttling
@@ -220,6 +224,8 @@
 =======
 >>>>>>> 84a8f10... Adjust frequencies and charge throttling
 >>>>>>> 54b2003... Adjust frequencies and charge throttling
+=======
+>>>>>>> 1a10dd0... Revert "Adjust frequencies and charge throttling"
 			qcom,autoadjust-vfloat;
 			qcom,pmic-revid = <&pmi8950_revid>;
 			qcom,charge-unknown-battery;
