@@ -87,9 +87,10 @@ export KBUILD_BUILD_HOST="beast"
 #STRIP=/toolchain-path/arm-eabi-strip
 STRIP=$COMPILER/bin/aarch64-linux-android-strip
 KERNEL_DIR=`pwd`
-REPACK_DIR="$KERNEL_DIR/zip/kernel_zip/tools"
-REPACK_DIR_1="$KERNEL_DIR/zip/kernel_zip"
-DTBTOOL_DIR="$KERNEL_DIR/zip"
+ZIP_DIR="/home/monish/kernel"
+REPACK_DIR="$ZIP_DIR/zip/kernel_zip/tools"
+REPACK_DIR_1="$ZIP_DIR/zip/kernel_zip"
+DTBTOOL_DIR="$ZIP_DIR/zip"
 IMAGE_DIR="$KERNEL_DIR/arch/arm64/boot"
 
 ###########################################################################
