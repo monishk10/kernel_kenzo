@@ -2443,6 +2443,7 @@ out_put:
 		 * error to return on the next call or if the
 		 * app asks about it using getsockopt(SO_ERROR).
 		 */
+<<<<<<< HEAD
 		if (err != -EAGAIN) {
 			/*
 			 * ... or  if recvmsg returns an error after we
@@ -2457,6 +2458,14 @@ out_put:
 	}
 
 	return err;
+=======
+		sock->sk->sk_err = -err;
+	}
+out_put:
+	fput_light(sock->file, fput_needed);
+
+	return datagrams;
+>>>>>>> f1a0f18... socket.c & qpnp-smbcharger.c :fix build errors
 }
 
 SYSCALL_DEFINE5(recvmmsg, int, fd, struct mmsghdr __user *, mmsg,

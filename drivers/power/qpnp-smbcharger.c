@@ -53,7 +53,10 @@
 #endif
 
 int FG_charger_status = 0;
+<<<<<<< HEAD
 
+=======
+>>>>>>> f1a0f18... socket.c & qpnp-smbcharger.c :fix build errors
 
 /* Mask/Bit helpers */
 #define _SMB_MASK(BITS, POS) \
