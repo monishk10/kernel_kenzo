@@ -50,7 +50,6 @@
 #endif
 
 int FG_charger_status = 0;
-#endif
 
 /* Mask/Bit helpers */
 #define _SMB_MASK(BITS, POS) \
