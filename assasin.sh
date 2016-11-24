@@ -192,7 +192,7 @@ case "$dchoice" in
 esac
 done
 echo -e "${bldgrn}"
-echo "AssassinX_kenzo-$(date +%d-%m_%H%M).zip"
+echo "AssassinX_kenzo_Ng-$(date +%d-%m_%H%M).zip"
 echo -e "${bldred}"
 echo "################################################################################"
 echo -e "${bldgrn}"
