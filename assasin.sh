@@ -35,7 +35,7 @@ clear
 THREAD="-j4"
 KERNEL="Image"
 DTBIMAGE="dt.img"
-DEFCONFIG="cyanogenmod_kenzo_defconfig"
+DEFCONFIG="miui_kenzo_defconfig"
 device="kenzo"
 COMPILER="/home/monish/kernel/Tools/aarch-arm64-5.3"
 
@@ -118,7 +118,7 @@ function make_kernel {
 
 function make_zip {
 		cd $REPACK_DIR_1
-		zip -r9 ~/kernel/builds/AssassinX_kenzo_Ng-$(date +%d-%m_%H%M).zip *
+		zip -r9 ~/kernel/builds/AssassinX_kenzo_MIUI-$(date +%d-%m_%H%M).zip *
 }
 
 function copy_modules {
@@ -192,7 +192,7 @@ case "$dchoice" in
 esac
 done
 echo -e "${bldgrn}"
-echo "AssassinX_kenzo_Ng-$(date +%d-%m_%H%M).zip"
+echo "AssassinX_kenzo_MIUI-$(date +%d-%m_%H%M).zip"
 echo -e "${bldred}"
 echo "################################################################################"
 echo -e "${bldgrn}"
